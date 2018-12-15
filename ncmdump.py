@@ -111,11 +111,13 @@ def Dump():
             elif meta_data['format'] == 'flac':
                 audio = FLAC(output_path)
                 audio.clear_pictures()
-                cover = Picture(image_data)
+                cover = Picture()
+                cover.data = image_data
+                cover.type = 3
                 cover.mime = mime
                 cover.desc = u'cover'
                 audio.add_picture(cover)
-            audio.save(v2_version=3)
+            audio.save()
         print('完成')
 
     return _dump
